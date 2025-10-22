@@ -27,8 +27,24 @@ python riskeye.py
 
 ### Docker ile Çalıştırmak İçin:
 ```bash
-docker build -t riskeye .
-docker run -p 5000:5000 riskeye
+# Normal başlatma
+./run_docker.sh
+
+# Sadece durum kontrolü
+./run_docker.sh status
+
+# Logları görüntüle
+./run_docker.sh logs
+
+# Durdur
+./run_docker.sh stop
+
+# Yeniden başlat
+./run_docker.sh restart
+
+docker-compose up -d
+docker-compose logs -f
+
 ```
 veya:
 ```bash
