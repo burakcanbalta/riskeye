@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  riskeye:
+    build: .
+    container_name: riskeye-scanner
+    ports:
+      - "5000:5000"
+    volumes:
+      - riskeye_data:/app/scan_results
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  riskeye_data:
